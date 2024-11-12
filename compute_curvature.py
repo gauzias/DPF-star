@@ -1,13 +1,13 @@
 import os
 import argparse
-from slam import io as sio
-from slam import texture as stex
-from slam.curvature import curvatures_and_derivatives
+from functions import io as sio
+from functions import texture as stex
+from functions import curvature as scurv 
 import config as cfg  # Import du chemin depuis config.py
 
 def save_curvature(K1, K2, Kmean, name_subject):
     # Création du dossier Parcelizer/named_subject
-    save_folder = os.path.join(cfg.PARCELIZER_FOLDER, name_subject)
+    save_folder = os.path.join(cfg.WD_FOLDER, name_subject)
     if not os.path.exists(save_folder):
         os.makedirs(save_folder)
 
@@ -18,7 +18,7 @@ def save_curvature(K1, K2, Kmean, name_subject):
 
 def compute_curvature(mesh):
     # Calcul des composantes principales
-    PrincipalCurvatures, PrincipalDir1, PrincipalDir2 = curvatures_and_derivatives(mesh)
+    PrincipalCurvatures, PrincipalDir1, PrincipalDir2 = scurv.curvatures_and_derivatives(mesh)
     K1 = PrincipalCurvatures[0, :]
     K2 = PrincipalCurvatures[1, :]
     # Calcul des courbures moyennes
