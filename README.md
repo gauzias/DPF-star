@@ -8,4 +8,6 @@ Here, we share all codes relativ to the paper : New scale-invariant sulcal depth
 
 # How to compute curvature
 To compute curvature of a mesh, write the following command in your terminal : 
+```python
 python .\compute_curvature.py .\meshes\mesh.gii
+```
