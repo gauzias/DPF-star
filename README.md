@@ -2,6 +2,7 @@
 Here, we share all codes relativ to the paper : New scale-invariant sulcal depth measure : A response to the conceptual and methodological problems of sulcal depth estimation
 
 # Organisation of the Repo
+```markdown
 DPF-STAR/
 ├── app/
 │   ├── compute_curvature.py
@@ -21,7 +22,7 @@ DPF-STAR/
 │   ├── scripts_EXP3.py
 │   ├── scripts_EXP4.py
 └── setup.py
-
+```
 
 # Workspace configuration
 1) Change the file .vscode/settings.json with the correct work directory
