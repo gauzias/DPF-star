@@ -1,7 +1,8 @@
-
 from scipy.sparse.linalg import lgmres, eigsh
 import functions.laplacian as laplacian
-solver_tolerance = 1e-6
+import numpy as np
+
+
 
 def depth_potential_function(mesh, curvature, alpha):
     """
@@ -24,5 +25,5 @@ def depth_potential_function(mesh, curvature, alpha):
     )
 
     M = alpha * LB + L / 2
-    dpf, info = lgmres(M.tocsr(), B, tol=solver_tolerance)
+    dpf, info = lgmres(M.tocsr(), B)
     return dpf

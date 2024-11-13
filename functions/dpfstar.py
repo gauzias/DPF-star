@@ -1,4 +1,6 @@
 import functions.dpf as dpf
+import numpy as np
+import trimesh
 
 def dpf_star(mesh, curvature, alpha_ref=500):
     """
@@ -10,10 +12,10 @@ def dpf_star(mesh, curvature, alpha_ref=500):
     :alpha: regularisation parameter 
     :return: array dpf star
     """
-    scaling = mesh.hull.volume
+    scaling = mesh.volume
     alpha = 1/np.power(scaling,2) * alpha_ref 
     # compute dpf
-    dpf = dpf.depth_potential_function(mesh, curvature=curvature, alpha=alpha)
+    depth = dpf.depth_potential_function(mesh, curvature=curvature, alpha=alpha)
     # normalisation
-    dpf_star = -dpf /scaling 
+    dpf_star = -depth /scaling 
     return dpf_star

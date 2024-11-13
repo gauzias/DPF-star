@@ -39,6 +39,14 @@ def write_mesh(mesh, gifti_file):
     nb.save(img, gifti_file)
 
 
+def read_gii_file(file_path):
+    try:
+        gifti_img = nb.load(file_path)
+        scalars = gifti_img.darrays[0].data
+        return scalars
+    except Exception as e:
+        print(f"Erreur lors du chargement de la texture : {e}")
+        return None
 def load_texture(gifti_file):
     """
     load gifti_file and create a TextureND object (multidimensional)
