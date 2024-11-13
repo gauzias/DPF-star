@@ -1,10 +1,10 @@
-from scipy.sparse.linalg import lgmres, eigsh
+from scipy.sparse.linalg import lgmres
 import functions.laplacian as laplacian
 import numpy as np
 
 
 
-def depth_potential_function(mesh, curvature, alpha):
+def depth_potential_function(mesh, curvature, alpha=0.03):
     """
     Compute the depth potential function of a mesh as desribed in
     Boucher, M., Whitesides, S., & Evans, A. (2009).
@@ -18,12 +18,7 @@ def depth_potential_function(mesh, curvature, alpha):
     :return: array 
     """
     L, LB = laplacian.compute_mesh_laplacian(mesh, lap_type="fem")
-    B = (
-        -2
-        * LB
-        * (curvature - (np.sum(curvature * LB.diagonal()) / np.sum(LB.diagonal())))
-    )
-
+    B = (2 * LB * (curvature - (np.sum(curvature * LB.diagonal()) / np.sum(LB.diagonal()))))
     M = alpha * LB + L / 2
     dpf, info = lgmres(M.tocsr(), B)
     return dpf
