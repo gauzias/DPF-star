@@ -70,6 +70,10 @@ python -m app.compute_curvature {path/to/your/mesh}
 ```
 Replace `{path/to/your/mesh}` with the actual path to your mesh file.
 
+```markdown
+![curvature display](./images/display_curvature.png)
+```
+
 #### 2. Compute DPF-STAR Depth
 To calculate the DPF-STAR depth of a mesh, use:
 ```bash
