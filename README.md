@@ -58,6 +58,7 @@ Before running the app, adjust the workspace configuration to ensure smooth oper
 ### Usage Overview
 The app allows you to:
 - Compute the **curvature** of a mesh.
+- Calculate the **DPF depth** of a mesh.
 - Calculate the **DPF-STAR depth** of a mesh.
 - Quickly visualize the **texture** applied on the mesh.
 
