@@ -66,26 +66,37 @@ The app allows you to:
 #### 1. Compute Curvature
 To compute the curvature of a mesh, run:
 ```bash
-python -m app.compute_curvature {path/to/your/mesh}
+python -m app.compute_curvature {path/to/your/mesh} --display
 ```
 Replace `{path/to/your/mesh}` with the actual path to your mesh file.
+- If the `--display` argument is added, the script will automatically run the dash code for visualising the mesh with the curvature texture.
 
 Here a screenshot of what you get with the example mesh : 
-
 <img src="./images/display_curvature.png" alt="curvature display" width="500"/>
 
-
-#### 2. Compute DPF-STAR Depth
-To calculate the DPF-STAR depth of a mesh, use:
+#### 2. Compute DPF Depth
+To calculate the DPF depth of a mesh, use:
 ```bash
-python -m app.compute_dpfstar {path/to/your/mesh} --curvature {curvature/path}
+python -m app.compute_dpf {path/to/your/mesh} --curvature {curvature/path} --display
 ```
 - If the `--curvature` argument is not specified, the script will look for a curvature file in the corresponding folder or compute it if necessary.
+- If the `--display` argument is added, the script will automatically run the dash code for visualising the mesh with the dpf texture.
 
-#### 3. Visualize Textures
+Here a screenshot of what you get with the example mesh : 
+<img src="./images/display_dpf.png" alt="dpf display" width="500"/>
+
+#### 3. Compute DPF-STAR Depth
+To calculate the DPF-STAR depth of a mesh, use:
+```bash
+python -m app.compute_dpfstar {path/to/your/mesh} --curvature {curvature/path} --display
+```
+- If the `--curvature` argument is not specified, the script will look for a curvature file in the corresponding folder or compute it if necessary.
+- If the `--display` argument is added, the script will automatically run the dash code for visualising the mesh with the dpf-star texture.
+
+#### 4. Visualize Textures
 To visualize textures on a mesh, use the following command:
 ```bash
-python -m app.visualiser {path/to/your/mesh} --texture {texture/path}
+python -m app.visualiser {path/to/your/mesh} --texture {texture/path} 
 ```
 Replace `{path/to/your/mesh}` and `{texture/path}` with the paths to your mesh and texture files, respectively.
 
