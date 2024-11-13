@@ -1,14 +1,24 @@
-# Introduction
-Here, we share all codes relativ to the paper : New scale-invariant sulcal depth measure : A response to the conceptual and methodological problems of sulcal depth estimation
+Here's an improved README file for your repository. I've refined the language, added explanations, and formatted the commands and instructions to make them clearer.
 
-# Organisation of the Repo
-```markdown
+---
+
+# DPF-STAR Repository
+
+## Introduction
+This repository contains the code associated with the paper: **"New Scale-Invariant Sulcal Depth Measure: A Response to the Conceptual and Methodological Problems of Sulcal Depth Estimation."** 
+
+The code here provides tools to compute curvature and a novel DPF-STAR depth measure for brain surface meshes, addressing limitations in traditional sulcal depth estimation methods.
+
+## Repository Organization
+The repository is organized as follows:
+
+```plaintext
 DPF-STAR/
-├── app/                       % application to use by your own the dpfstar method
-│   ├── compute_curvature.py
-│   └── compute_dpfstar.py
-│   └── visualiser.py
-├── fonctions/                % functions called by the application
+├── app/                       # Application for using the DPF-STAR method on custom data
+│   ├── compute_curvature.py   # Script for computing mesh curvature
+│   ├── compute_dpfstar.py     # Script for computing the DPF-STAR depth
+│   └── visualiser.py          # Script for visualizing textures on meshes
+├── fonctions/                 # Utility functions used by the app
 │   ├── curvature.py
 │   ├── dpf.py
 │   ├── dpfstar.py
@@ -16,51 +26,67 @@ DPF-STAR/
 │   ├── rw.py
 │   ├── topology.py
 │   └── texture.py
-├── scripts/                % scripts used for the paper
+├── scripts/                   # Scripts used in experiments for the paper
 │   ├── scripts_EXP1.py
 │   ├── scripts_EXP2.py
 │   ├── scripts_EXP3.py
-│   ├── scripts_EXP4.py
-└── setup.py
+│   └── scripts_EXP4.py
+└── setup.py                   # Setup file for installing the package
 ```
 
-# Workspace configuration
-1) Change the file .vscode/settings.json with the correct work directory
-2) Change the file .vscode/launc.json with the correct work directory
-3) Change the file config/py with the correct work directory
+## Workspace Configuration
+Before running the app, adjust the workspace configuration to ensure smooth operation:
 
-# How to use the app
-## Configuration
-1. Navigue dans le dossier racine de ton projet :
-```bash
-cd path/to/projet
-```
-2. upgrade pip et setuptools
-```bash
-pip install --upgrade setuptools pip
-```
-3. Installe le package en mode développement avec la commande :
-```bash
-pip install -e .
-```
-## Utilisation
-the App allows you to compute curvature, the dpfstar depth of a mesh. The app allows you to to have a quick visualiser of the texture applied on the mesh.
+1. Update `.vscode/settings.json` with the correct project root directory path.
+2. Update `.vscode/launch.json` with the correct project root directory path.
+3. Adjust the `config.py` file to point to the correct project root directory.
 
-### How to compute curvature
-To compute curvature of a mesh, write the following command in your terminal : 
-```python
+## How to Use the App
+
+### Configuration Steps
+1. **Navigate to the project root directory:**
+   ```bash
+   cd path/to/DPF-STAR
+   ```
+
+2. **Upgrade pip and setuptools:**
+   ```bash
+   pip install --upgrade setuptools pip
+   ```
+
+3. **Install the package in development mode:**
+   ```bash
+   pip install -e .
+   ```
+
+### Usage Overview
+The app allows you to:
+- Compute the **curvature** of a mesh.
+- Calculate the **DPF-STAR depth** of a mesh.
+- Quickly visualize the **texture** applied on the mesh.
+
+### Commands
+
+#### 1. Compute Curvature
+To compute the curvature of a mesh, run:
+```bash
 python -m app.compute_curvature {path/to/your/mesh}
 ```
+Replace `{path/to/your/mesh}` with the actual path to your mesh file.
 
-### How to compute DPF-star
-To compute DPF-star of a mesh, write the following command in your terminal : 
-```python
-python -m app.compute_dpfstar {path/to/your/mesh} --curvature {curvature path}
+#### 2. Compute DPF-STAR Depth
+To calculate the DPF-STAR depth of a mesh, use:
+```bash
+python -m app.compute_dpfstar {path/to/your/mesh} --curvature {curvature/path}
 ```
-if the argument curvature is not given, the code will consider the curvature in the corresponding folder or computing it.
+- If the `--curvature` argument is not specified, the script will look for a curvature file in the corresponding folder or compute it if necessary.
 
-### How to visualize 
-```python
-python -m app.visualizer {path/to/your/mesh} --texture {texture path}
+#### 3. Visualize Textures
+To visualize textures on a mesh, use the following command:
+```bash
+python -m app.visualiser {path/to/your/mesh} --texture {texture/path}
 ```
+Replace `{path/to/your/mesh}` and `{texture/path}` with the paths to your mesh and texture files, respectively.
+
+---
 
