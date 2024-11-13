@@ -11,3 +11,10 @@ To compute curvature of a mesh, write the following command in your terminal :
 ```python
 python .\compute_curvature.py .\meshes\mesh.gii
 ```
+
+# How to compute DPF-star
+To compute DPF-star of a mesh, write the following command in your terminal : 
+```python
+python .\compute_dpfstar.py {mesh path} --curvature {curvature path}
+```
+if the argument curvature is not given, the code will consider the curvature in the corresponding folder or computing it.
