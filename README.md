@@ -1,7 +1,3 @@
-Here's an improved README file for your repository. I've refined the language, added explanations, and formatted the commands and instructions to make them clearer.
-
----
-
 # DPF-STAR Repository
 
 ## Introduction
