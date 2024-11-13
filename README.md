@@ -94,6 +94,9 @@ python -m app.compute_dpfstar {path/to/your/mesh} --curvature {curvature/path} -
 - If the `--curvature` argument is not specified, the script will look for a curvature file in the corresponding folder or compute it if necessary.
 - If the `--display` argument is added, the script will automatically run the dash code for visualising the mesh with the dpf-star texture.
 
+Here a screenshot of what you get with the example mesh : 
+<img src="./images/display_dpfstar.png" alt="dpfstar display" width="500"/>
+
 #### 4. Visualize Textures
 To visualize textures on a mesh, use the following command:
 ```bash
@@ -102,4 +105,11 @@ python -m app.visualiser {path/to/your/mesh} --texture {texture/path}
 Replace `{path/to/your/mesh}` and `{texture/path}` with the paths to your mesh and texture files, respectively.
 
 ---
+you will get :
+```bash
+Dash is running on http://XXX.X.X.X:XXXX/
 
+ * Serving Flask app 'visualizer'
+ * Debug mode: on
+```bash
+simply copy paste the url http://XXX.X.X.X:XXXX/ is your internet browser
