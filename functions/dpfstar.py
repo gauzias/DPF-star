@@ -14,11 +14,11 @@ def dpf_star(mesh, curvature, alpha_ref=500):
     :alpha: regularisation parameter 
     :return: array dpf star
     """
-    scaling = mesh.volume
+    scaling = np.power(mesh.convex_hull.volume,1/3)
     alpha = 1/np.power(scaling,2) * alpha_ref 
     # compute dpf
     depth = dpf.depth_potential_function(mesh, curvature=curvature, alpha=alpha)
     # normalisation
-    dpf_star = -depth /scaling 
-    dpf_star = dpf_star * 1000 #for better unit
+    dpf_star = depth /scaling 
+    dpf_star = dpf_star * 100 #for better unit
     return dpf_star
