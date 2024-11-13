@@ -111,5 +111,5 @@ Dash is running on http://XXX.X.X.X:XXXX/
 
  * Serving Flask app 'visualizer'
  * Debug mode: on
-```bash
+```
 simply copy paste the url http://XXX.X.X.X:XXXX/ is your internet browser
