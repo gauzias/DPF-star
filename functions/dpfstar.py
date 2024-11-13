@@ -1,6 +1,8 @@
 import functions.dpf as dpf
 import numpy as np
 import trimesh
+import config as cfg
+
 
 def dpf_star(mesh, curvature, alpha_ref=500):
     """
@@ -18,4 +20,5 @@ def dpf_star(mesh, curvature, alpha_ref=500):
     depth = dpf.depth_potential_function(mesh, curvature=curvature, alpha=alpha)
     # normalisation
     dpf_star = -depth /scaling 
+    dpf_star = dpf_star * 1000 #for better unit
     return dpf_star
