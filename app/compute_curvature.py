@@ -1,6 +1,8 @@
 import os
 import argparse
-from functions import io as sio
+import sys
+sys.path.insert(0, "../functions")
+from functions import rw as sio
 from functions import texture as stex
 from functions import curvature as scurv 
 import config as cfg  # Import du chemin depuis config.py

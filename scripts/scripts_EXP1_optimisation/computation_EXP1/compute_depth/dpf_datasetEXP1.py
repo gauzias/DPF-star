@@ -1,0 +1,56 @@
+
+import slam.io as sio
+import os
+import pandas as pd
+import slam.texture as stex
+import tools.depth as depth
+
+"""
+date : 10/08/2023
+author : maxime.dieudonne@univ-amu.fr
+
+this script compute the dpf with alpha = 0.03 with the slam package for all the subject of the dataset EXP1
+"""
+
+# wd
+wd = '/home/maxime/callisto/repo/paper_sulcal_depth/'
+alphas = [0, 0.0001, 0.0005, 0.001, 0.003, 0.005, 0.01, 0.03, 0.05, 0.5]
+df_alphas = pd.DataFrame(dict(alphas = alphas))
+
+# load datasetEXP1
+datasetEXP1 = pd.read_csv(os.path.join(wd, 'datasets/dataset_EXP1.csv'))
+
+subjects = datasetEXP1['participant_id'].values
+sessions = datasetEXP1['session_id'].values
+dataset = datasetEXP1['dataset'].values
+
+### COMPUTE DPF
+print(".....COMPUTE DPF.....")
+for idx, sub in enumerate(subjects):
+    print(sub)
+    ses = sessions[idx]
+    dset = dataset[idx]
+    #load mesha
+    mesh_name = 'sub-' + sub + '_ses-' + ses + '_hemi-L_space-T2w_wm.surf.gii'
+    mesh_path = os.path.join(wd , 'data_EXP1/meshes', mesh_name)
+    mesh = sio.load_mesh(mesh_path)
+    #load curv
+    K1_path = os.path.join(wd, 'data_EXP1/result_EXP1/depth', sub + '_' + ses,  'curvature',
+                           sub + '_' + ses + '_K1.gii')
+    K2_path = os.path.join(wd, 'data_EXP1/result_EXP1/depth', sub + '_' + ses,  'curvature',
+                           sub + '_' + ses + '_K2.gii')
+    K1 = sio.load_texture(K1_path).darray[0]
+    K2 = sio.load_texture(K2_path).darray[0]
+    curv = 0.5 * (K1 + K2)
+    # compute dpf
+    dpf_temp = depth.depth_potential_function(mesh, curv, alphas)
+    dpf = [-dp for dp in dpf_temp]
+    #save dpf
+    fname_dpf = sub + '_' + ses + '_dpf.gii'
+    folder_dpf = os.path.join('data_EXP1/result_EXP1/depth', sub + '_' + ses, 'dpf')
+    if not os.path.exists(folder_dpf):
+        os.makedirs(folder_dpf)
+
+    sio.write_texture(stex.TextureND(darray=dpf), os.path.join(folder_dpf, fname_dpf))
+    df_alphas.to_csv(os.path.join(folder_dpf, 'alpha.csv'), index=False)
+
