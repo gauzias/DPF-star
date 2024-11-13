@@ -4,11 +4,11 @@ Here, we share all codes relativ to the paper : New scale-invariant sulcal depth
 # Organisation of the Repo
 ```markdown
 DPF-STAR/
-├── app/
+├── app/                       % application to use by your own the dpfstar method
 │   ├── compute_curvature.py
 │   └── compute_dpfstar.py
 │   └── visualiser.py
-├── fonctions/
+├── fonctions/                % functions called by the application
 │   ├── curvature.py
 │   ├── dpf.py
 │   ├── dpfstar.py
@@ -16,7 +16,7 @@ DPF-STAR/
 │   ├── rw.py
 │   ├── topology.py
 │   └── texture.py
-├── scripts/
+├── scripts/                % scripts used for the paper
 │   ├── scripts_EXP1.py
 │   ├── scripts_EXP2.py
 │   ├── scripts_EXP3.py
