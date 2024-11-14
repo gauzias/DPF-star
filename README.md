@@ -6,6 +6,10 @@ This repository contains the code associated with the paper: **"New Scale-Invari
 The code here provides tools to compute curvature and a novel DPF-STAR depth measure for brain surface meshes, addressing limitations in traditional sulcal depth estimation methods.
 
 ## Repository Organization
+There are 23 main files in this repo : 
+(1) app : functions you can run on command line and allow you to use the dpf-star method for your own studies.
+(2) scripts : the scripts used for the different experience introduced in the article.
+(3) functions : functions useful both for the app and the scripts.
 The repository is organized as follows:
 
 ```plaintext
