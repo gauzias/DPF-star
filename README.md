@@ -108,7 +108,6 @@ python -m app.visualiser {path/to/your/mesh} --texture {texture/path}
 ```
 Replace `{path/to/your/mesh}` and `{texture/path}` with the paths to your mesh and texture files, respectively.
 
----
 you will get :
 ```bash
 Dash is running on http://XXX.X.X.X:XXXX/
