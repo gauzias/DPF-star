@@ -1,5 +1,8 @@
 # DPF-STAR Repository
 
+[![DOI](https://zenodo.org/badge/887228134.svg)](https://doi.org/10.5281/zenodo.14163623)
+
+
 ## Introduction
 This repository contains the code associated with the paper: **"New Scale-Invariant Sulcal Depth Measure: A Response to the Conceptual and Methodological Problems of Sulcal Depth Estimation."** 
 
