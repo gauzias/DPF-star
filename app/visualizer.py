@@ -9,6 +9,13 @@ from functions import rw as sio
 import plotly.colors as pc
 import argparse
 
+
+
+PREDEFINED_COLORS = [
+    '#FF0000', '#0000FF', '#00FF00', '#FFFF00', '#FFA500',
+    '#FFC0CB', '#800080', '#00FFFF', '#808080', '#000000'
+]
+
 # Fonction pour lire un fichier GIFTI (scalars.gii)
 def read_gii_file(file_path):
     try:
@@ -117,6 +124,16 @@ def get_colorscale_names(colormap_type):
 def create_slider_marks(color_min_default, color_max_default):
     return {str(i): f'{i:.2f}' for i in np.linspace(color_min_default, color_max_default, 10)}
 
+# fonction pour discretiser la colormap
+def discretize_colormap(colormap, num_colors=10):
+    colors = pc.get_colorscale(colormap)
+    discrete_colors = []
+    for i in range(num_colors):
+        fraction = i / (num_colors - 1)
+        color = pc.sample_colorscale(colors, fraction)[0]  # Extraire la couleur de la liste imbriquée
+        discrete_colors.append([fraction, color])  # Ajouter le fractionnement et la couleur
+    return discrete_colors
+
 # Fonction principale pour exécuter l'application
 def run_dash_app(mesh_path, texture_path=None):
     # Charger le mesh
@@ -134,6 +151,7 @@ def run_dash_app(mesh_path, texture_path=None):
     app = dash.Dash(__name__)
 
     # Layout de l'application
+
     app.layout = html.Div([
         html.H1("Visualisation de maillage 3D avec color bar interactive", style={'textAlign': 'center'}),
         html.Div([
@@ -155,6 +173,13 @@ def run_dash_app(mesh_path, texture_path=None):
                     options=[{'label': cmap, 'value': cmap} for cmap in get_colorscale_names('sequential')],
                     value='Viridis',
                     clearable=False
+                ),
+                html.Label("Discrétiser la colormap"),
+                dcc.Checklist(
+                    id='toggle-discrete-colormap',
+                    options=[{'label': 'Oui', 'value': 'on'}],
+                    value=[],
+                    inline=True
                 ),
                 html.Label("Afficher les isolignes"),
                 dcc.Checklist(
@@ -187,11 +212,45 @@ def run_dash_app(mesh_path, texture_path=None):
                     vertical=True,
                     verticalHeight=640,
                     tooltip={"placement": "right", "always_visible": True}
-                )
+                ),
+                html.Button("Personnaliser ma colormap", id='custom-colormap-button', n_clicks=0, style={'margin-top': '20px'})
             ], style={'height': '640px', 'display': 'inline-block', 'margin-right': '10px'}),
             html.Div([
                 dcc.Graph(id='3d-mesh')
             ], style={'display': 'inline-block', 'verticalAlign': 'top', 'textAlign': 'center'}),
+            # Modale pour personnaliser la colormap
+            html.Div(
+                id="custom-colormap-modal",
+                style={"display": "none", "position": "fixed", "zIndex": 1000, "top": "10%", "left": "20%", "width": "60%", "height": "80%", "backgroundColor": "white", "border": "1px solid #ccc", "boxShadow": "0px 4px 8px rgba(0, 0, 0, 0.2)"},
+                children=[
+                    html.Div(
+                        style={"padding": "20px", "overflow": "auto", "height": "calc(100% - 60px)"},
+                        children=[
+                            html.H2("Personnaliser la Colormap", style={"textAlign": "center"}),
+                            html.Div(id="color-intervals-container", children=[]),
+                            html.Button("Ajouter une couleur", id="add-interval-btn", style={"marginTop": "10px", "display": "block", "marginLeft": "auto", "marginRight": "auto"}),
+                            html.Div(
+                                children=[
+                                    html.Label("Liste des couleurs disponibles :"),
+                                    html.Div(
+                                        id="color-options",
+                                        children=[html.Div(style={"display": "inline-block", "width": "30px", "height": "30px", "backgroundColor": color, "margin": "5px", "border": "1px solid black"}, title=color) for color in PREDEFINED_COLORS],
+                                        style={"textAlign": "center"}
+                                    )
+                                ],
+                                style={"marginTop": "20px"}
+                            ),
+                        ]
+                    ),
+                    html.Div(
+                        style={"padding": "10px", "textAlign": "right", "borderTop": "1px solid #ccc"},
+                        children=[
+                            html.Button("Annuler", id="cancel-customization-btn", style={"marginRight": "10px"}),
+                            html.Button("Appliquer", id="apply-customization-btn", style={"backgroundColor": "#28a745", "color": "white"})
+                        ]
+                    )
+                ]
+            )
         ], style={'display': 'flex', 'justifyContent': 'center', 'alignItems': 'center'})
     ])
 
@@ -199,22 +258,28 @@ def run_dash_app(mesh_path, texture_path=None):
     @app.callback(
         Output('3d-mesh', 'figure'),
         [Input('range-slider', 'value'),
-         Input('toggle-contours', 'value'),
-         Input('toggle-black-intervals', 'value'),
-         Input('colormap-dropdown', 'value'),
-         Input('toggle-center-colormap', 'value')],
+        Input('toggle-contours', 'value'),
+        Input('toggle-black-intervals', 'value'),
+        Input('colormap-dropdown', 'value'),
+        Input('toggle-center-colormap', 'value'),
+        Input('toggle-discrete-colormap', 'value')],
         [State('3d-mesh', 'relayoutData')]
-    )
-    def update_figure(value_range, toggle_contours, toggle_black_intervals, selected_colormap, center_colormap, relayout_data):
+)
+    def update_figure(value_range, toggle_contours, toggle_black_intervals, selected_colormap, center_colormap, toggle_discrete, relayout_data):
         min_value, max_value = value_range
         camera = relayout_data['scene.camera'] if relayout_data and 'scene.camera' in relayout_data else None
         show_contours = 'on' in toggle_contours
         use_black_intervals = 'on' in toggle_black_intervals
         center_on_zero = 'on' in center_colormap
+        use_discrete_colormap = 'on' in toggle_discrete
 
+        # Discrétiser la colormap si l'option est activée
+        colormap = discretize_colormap(selected_colormap, num_colors=10) if use_discrete_colormap else selected_colormap
+
+        # Créer la figure avec les paramètres mis à jour
         fig = plot_mesh_with_colorbar(
             vertices, faces, scalars, color_min=min_value, color_max=max_value,
-            camera=camera, show_contours=show_contours, colormap=selected_colormap,
+            camera=camera, show_contours=show_contours, colormap=colormap,
             use_black_intervals=use_black_intervals, center_colormap_on_zero=center_on_zero
         )
         return fig
@@ -226,6 +291,25 @@ def run_dash_app(mesh_path, texture_path=None):
     )
     def update_colormap_options(selected_type):
         return [{'label': cmap, 'value': cmap} for cmap in get_colorscale_names(selected_type)]
+    
+    @app.callback(
+        Output('custom-colormap-modal', 'style'),
+        [Input('custom-colormap-button', 'n_clicks'),
+        Input('cancel-customization-btn', 'n_clicks')],
+        [State('custom-colormap-modal', 'style')]
+    )
+    def toggle_modal(open_clicks, cancel_clicks, current_style):
+        ctx = dash.callback_context
+        if not ctx.triggered:
+            return current_style
+        trigger_id = ctx.triggered[0]['prop_id'].split('.')[0]
+        if trigger_id == 'custom-colormap-button':
+            return {"display": "block", "position": "fixed", "zIndex": 1000, "top": "10%", "left": "20%", "width": "60%", "height": "80%", "backgroundColor": "white", "border": "1px solid #ccc", "boxShadow": "0px 4px 8px rgba(0, 0, 0, 0.2)"}
+        elif trigger_id == 'cancel-customization-btn':
+            return {"display": "none"}
+        return current_style
+    
+
 
     # Lancer l'application
     app.run_server(debug=True)
