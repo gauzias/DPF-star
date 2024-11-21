@@ -66,18 +66,18 @@ conda activate your_project_name
 
 If you want to contribute to this repository, you can install all the dependencies and the application in editable mode using 'pip install -e .'. This command installs the package as a symbolic link, allowing you to test changes locally as you develop without needing to reinstall the package. For more details about editable installations, see [the pip documentation on editable installs](https://pip.pypa.io/en/stable/cli/pip_install/#editable-installs).
 
-1. **Navigate to the project root directory:**
-   ```bash
-   cd path/to/DPF-STAR
-   ```
-2. **Upgrade pip and setuptools:**
-   ```bash
-   pip install --upgrade setuptools pip
-   ```
-3. **Install the package in development mode:**
-   ```bash
-   pip install -e .
-   ```
+1. Navigate to the project root directory:
+```bash
+cd path/to/DPF-STAR
+```
+2. Upgrade pip and setuptools:
+```bash
+pip install --upgrade setuptools pip
+```
+3. Install the package in development mode:
+```bash
+pip install -e .
+```
 You can run pip install -e . after creating either a Python virtual environment or a Conda environment; while Conda environments are heavier, they provide better dependency and system package management.
 For maximum flexibility, create and activate a Conda environment, then run pip install -e . to install the application in editable mode while leveraging the Conda environment for dependency management.
 
