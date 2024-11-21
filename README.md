@@ -119,3 +119,12 @@ Dash is running on http://XXX.X.X.X:XXXX/
  * Debug mode: on
 ```
 simply copy paste the url http://XXX.X.X.X:XXXX/ is your internet browser
+
+## Data and scripts of the paper
+
+### 1. Experience 1.
+
+#### a. Dataset manually labelised
+
+The informations relative to the datasets are stored in the folder ./data/dataset_EXP1.csv
+<img src="./images/screen_dataset_EXP1.png" alt="curvature display" width="500"/>
