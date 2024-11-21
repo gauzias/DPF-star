@@ -15,6 +15,7 @@ The code here provides tools to compute curvature and a novel DPF-STAR depth mea
 
 
 <a name="organization"/>
+
 ## Repository Organization
 There are 23 main files in this repo : 
 (1) app : functions you can run on command line and allow you to use the dpf-star method for your own studies.
