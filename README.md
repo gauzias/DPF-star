@@ -33,7 +33,7 @@ Follow these steps to set up and run this project on your machine.
 
 ### Installation Steps
 
-#### Option 1 : automatic installation (via conda env)
+#### Option 1 : automatic installation of the conda env (recommended)
 1. Fork and Clone this repository:
 ```bash
 git clone https://github.com/your-username/DPF-star .git
@@ -51,7 +51,7 @@ If the script does not execute, make sure it is executable:
  ```bash
 chmod +x install.sh
 ```
-#### Option 2 : manual installation (via conda env)
+#### Option 2 : manual installation of the conda env
 If you prefer not to use the script, here are the manual steps:
 1. Create the Conda environment from the environment.yml file:
 ```bash
@@ -62,6 +62,23 @@ conda env create -f environment.yml
 conda activate your_project_name
 ```
 
+### Option 3 : editable mode.
+
+If you want to contribute to this repository, you can install all the dependencies and the application in editable mode using 'pip install -e .'. This command installs the package as a symbolic link, allowing you to test changes locally as you develop without needing to reinstall the package. For more details about editable installations, see the pip documentation on editable installs."
+
+1. **Navigate to the project root directory:**
+   ```bash
+   cd path/to/DPF-STAR
+   ```
+2. **Upgrade pip and setuptools:**
+   ```bash
+   pip install --upgrade setuptools pip
+   ```
+3. **Install the package in development mode:**
+   ```bash
+   pip install -e .
+   ```
+for a maximum
 <a name="organization"/>
 
 ## Repository Organization
@@ -105,22 +122,6 @@ Before running the app, adjust the workspace configuration to ensure smooth oper
 <a name="app"/>
 
 ## How to Use the App
-
-### Configuration Steps
-1. **Navigate to the project root directory:**
-   ```bash
-   cd path/to/DPF-STAR
-   ```
-
-2. **Upgrade pip and setuptools:**
-   ```bash
-   pip install --upgrade setuptools pip
-   ```
-
-3. **Install the package in development mode:**
-   ```bash
-   pip install -e .
-   ```
 
 ### Usage Overview
 The app allows you to:
