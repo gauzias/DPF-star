@@ -10,10 +10,10 @@ setup(
         'pandas',
         'plotly',
         'scipy',
-        'dash'
-        'nibabel'
-        'scipy'
-        'numpy'
-        'trimesh'
+        'dash',
+        'nibabel',
+        'scipy',
+        'numpy',
+        'trimesh',
     ],
 )

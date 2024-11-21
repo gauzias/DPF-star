@@ -2,3 +2,12 @@ Metadata-Version: 2.1
 Name: dpfstar
 Version: 0.1
 License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: plotly
+Requires-Dist: scipy
+Requires-Dist: dash
+Requires-Dist: nibabel
+Requires-Dist: scipy
+Requires-Dist: numpy
+Requires-Dist: trimesh

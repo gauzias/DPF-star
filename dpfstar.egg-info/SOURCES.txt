@@ -3,11 +3,13 @@ README.md
 setup.py
 app/__init__.py
 app/compute_curvature.py
+app/compute_dpf.py
 app/compute_dpfstar.py
 app/visualizer.py
 dpfstar.egg-info/PKG-INFO
 dpfstar.egg-info/SOURCES.txt
 dpfstar.egg-info/dependency_links.txt
+dpfstar.egg-info/requires.txt
 dpfstar.egg-info/top_level.txt
 functions/__init__.py
 functions/curvature.py
