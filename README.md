@@ -9,11 +9,58 @@ This repository contains the code associated with the paper: **"New Scale-Invari
 The code here provides tools to compute curvature and a novel DPF-STAR depth measure for brain surface meshes, addressing limitations in traditional sulcal depth estimation methods.
 
 ## Table of Contents  
-1. [Repository Organization](#organization) 
-2. [Worspace Configuration](#configuration)
-3. [How to use the App](#app)  
-4. [Data and Scripts](#scripts)  
+1. [Installation](#installation) 
+2. [Repository Organization](#organization) 
+3. [Worspace Configuration](#configuration)
+4. [How to use the App](#app)  
+5. [Data and Scripts](#scripts)
 
+
+<a name="installation"/>
+
+## Installation
+
+Follow these steps to set up and run this project on your machine.
+
+### Prerequisites
+
+- Make sure **Conda** is installed on your machine.  
+  You can download Miniconda or Anaconda here:  
+  - [Miniconda](https://docs.conda.io/en/latest/miniconda.html)  
+  - [Anaconda](https://www.anaconda.com/products/distribution)  
+
+- Ensure that `bash` is available (commonly pre-installed on Linux and macOS, or via Git Bash on Windows).
+
+### Installation Steps
+
+#### Option 1 : automatic installation (via conda env)
+1. Fork and Clone this repository:
+```bash
+git clone https://github.com/your-username/DPF-star .git
+cd DPF-star
+```
+2. Run the installation script:
+```bash
+./install.sh
+```
+This script will:
+* Create a Conda environment using the environment.yml file.
+* Activate the newly created environment.
+
+If the script does not execute, make sure it is executable:
+ ```bash
+chmod +x install.sh
+```
+#### Option 2 : manual installation (via conda env)
+If you prefer not to use the script, here are the manual steps:
+1. Create the Conda environment from the environment.yml file:
+```bash
+conda env create -f environment.yml
+```
+2. Activate the Conda environment:
+```bash
+conda activate your_project_name
+```
 
 <a name="organization"/>
 
