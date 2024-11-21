@@ -10,6 +10,7 @@ The code here provides tools to compute curvature and a novel DPF-STAR depth mea
 
 ## Table of Contents  
 [Repository Organization](#organization)  
+[Worspace Configuration](#configuration)
 [How to use the App](#app)  
 [Data and Scripts](#scripts)  
 
@@ -45,6 +46,8 @@ DPF-STAR/
 └── setup.py                   # Setup file for installing the package
 ```
 
+<a name="configuration"/>
+
 ## Workspace Configuration
 Before running the app, adjust the workspace configuration to ensure smooth operation:
 
@@ -53,6 +56,7 @@ Before running the app, adjust the workspace configuration to ensure smooth oper
 3. Adjust the `config.py` file to point to the correct project root directory.
 
 <a name="app"/>
+
 ## How to Use the App
 
 ### Configuration Steps
@@ -130,6 +134,7 @@ Dash is running on http://XXX.X.X.X:XXXX/
 simply copy paste the url http://XXX.X.X.X:XXXX/ is your internet browser
 
 <a name="scripts"/>
+
 ## Data and scripts of the paper
 
 ### 1. Experience 1.
