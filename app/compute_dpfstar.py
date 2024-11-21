@@ -16,7 +16,7 @@ def save_dpfstar(dpfstar, name_subject):
 
 
 def call_compute_curvature(mesh_path):
-    os.system(f"python .\compute_curvature.py {mesh_path}")
+    os.system(f"python -m  app.compute_curvature {mesh_path}")
 
 def call_visuallizer(mesh_path, texture_path):
     os.system(f"python -m app.visualizer {mesh_path} --texture {texture_path}")
@@ -29,15 +29,13 @@ def main(mesh_path, curvature=None, display=False):
     name_subject = os.path.basename(mesh_path).replace('.gii', '')
 
     # Vérifier si le chemin de courbure est fourni
-    if curvature is None:
-        try:
-            # Chargement de la courbure s'il est présent dans le dossier
+    if (curvature is None) & ( os.path.exists(os.path.join(cfg.WD_FOLDER, name_subject, cfg.KMEAN))):
             Kmean = rw.read_gii_file(os.path.join(cfg.WD_FOLDER, name_subject, cfg.KMEAN))
-        except FileNotFoundError:
-            print("Calcul de la courbure car aucune courbure fournie.")
-            call_compute_curvature(mesh_path)  # Fonction qui doit exister
-            Kmean = rw.read_gii_file(os.path.join(cfg.WD_FOLDER, name_subject, cfg.KMEAN))
-    else:
+    if (curvature is None) & ( not os.path.exists(os.path.join(cfg.WD_FOLDER, name_subject, cfg.KMEAN))):
+        print("Calcul de la courbure car aucune courbure fournie.")
+        call_compute_curvature(mesh_path)  
+        Kmean = rw.read_gii_file(os.path.join(cfg.WD_FOLDER, name_subject, cfg.KMEAN))
+    if curvature is not None : 
         # Charger la courbure à partir du chemin spécifié
         Kmean = rw.read_gii_file(curvature)
 

@@ -47,6 +47,7 @@ def read_gii_file(file_path):
     except Exception as e:
         print(f"Erreur lors du chargement de la texture : {e}")
         return None
+    
 def load_texture(gifti_file):
     """
     load gifti_file and create a TextureND object (multidimensional)
