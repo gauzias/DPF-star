@@ -78,8 +78,7 @@ pip install --upgrade setuptools pip
 ```bash
 pip install -e .
 ```
-You can run pip install -e . after creating either a Python virtual environment or a Conda environment; while Conda environments are heavier, they provide better dependency and system package management.
-For maximum flexibility, create and activate a Conda environment, then run pip install -e . to install the application in editable mode while leveraging the Conda environment for dependency management.
+You can run pip install -e . after creating either a Python virtual environment or a Conda environment. While Conda environments are larger in size, they offer more robust dependency management and support for non-Python packages. For maximum flexibility, it is recommended to create and activate a Conda environment first, then use pip install -e . to install the application in editable mode, allowing you to develop and test changes while benefiting from Conda's comprehensive package management.
 
 <a name="organization"/>
 
