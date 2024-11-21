@@ -65,7 +65,7 @@ conda activate your_project_name
 <a name="organization"/>
 
 ## Repository Organization
-There are 23 main files in this repo : 
+There are 3 main files in this repo : 
 (1) app : functions you can run on command line and allow you to use the dpf-star method for your own studies.
 (2) scripts : the scripts used for the different experience introduced in the article.
 (3) functions : functions useful both for the app and the scripts.
