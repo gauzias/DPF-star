@@ -8,6 +8,13 @@ This repository contains the code associated with the paper: **"New Scale-Invari
 
 The code here provides tools to compute curvature and a novel DPF-STAR depth measure for brain surface meshes, addressing limitations in traditional sulcal depth estimation methods.
 
+## Table of Contents  
+[Repository Organization](#organization)  
+[How to use the App](#app)  
+[Data and Scripts](#scripts)  
+
+
+<a name="organization"/>
 ## Repository Organization
 There are 23 main files in this repo : 
 (1) app : functions you can run on command line and allow you to use the dpf-star method for your own studies.
@@ -44,6 +51,7 @@ Before running the app, adjust the workspace configuration to ensure smooth oper
 2. Update `.vscode/launch.json` with the correct project root directory path.
 3. Adjust the `config.py` file to point to the correct project root directory.
 
+<a name="app"/>
 ## How to Use the App
 
 ### Configuration Steps
@@ -120,6 +128,7 @@ Dash is running on http://XXX.X.X.X:XXXX/
 ```
 simply copy paste the url http://XXX.X.X.X:XXXX/ is your internet browser
 
+<a name="scripts"/>
 ## Data and scripts of the paper
 
 ### 1. Experience 1.
