@@ -127,4 +127,4 @@ simply copy paste the url http://XXX.X.X.X:XXXX/ is your internet browser
 #### a. Dataset manually labelised
 
 The informations relative to the datasets are stored in the folder ./data/dataset_EXP1.csv
-<img src="./images/screen_dataset_EXP1.png" alt="curvature display" width="500"/>
+<img src="./images/screen_dataset_EXP1.png" alt="data EXP1" width="500"/>
