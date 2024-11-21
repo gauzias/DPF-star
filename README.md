@@ -25,10 +25,7 @@ Follow these steps to set up and run this project on your machine.
 ### Prerequisites
 
 - Make sure **Conda** is installed on your machine.  
-  You can download Miniconda or Anaconda here:  
-  - [Miniconda](https://docs.conda.io/en/latest/miniconda.html)  
-  - [Anaconda](https://www.anaconda.com/products/distribution)  
-
+  You can download Miniconda or Anaconda here: [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Anaconda](https://www.anaconda.com/products/distribution)  
 - Ensure that `bash` is available (commonly pre-installed on Linux and macOS, or via Git Bash on Windows).
 
 ### Installation Steps
