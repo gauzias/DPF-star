@@ -1,5 +1,5 @@
 from scipy.sparse.linalg import lgmres
-import functions.laplacian as laplacian
+import app.functions.laplacian as laplacian
 import numpy as np
 
 
