@@ -1,4 +1,4 @@
-import slam.differential_geometry as sdg
+from research.tools import differential_geometry as sdg
 import numpy as np
 
 def compute_dpfstar(mesh, curvature, scaling, list_alpha_ref):

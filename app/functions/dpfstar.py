@@ -1,7 +1,7 @@
-import functions.dpf as dpf
+from app.functions import dpf as dpf
 import numpy as np
 import trimesh
-import config as cfg
+import app.config as cfg
 
 
 def dpf_star(mesh, curvature, alpha_ref=500):

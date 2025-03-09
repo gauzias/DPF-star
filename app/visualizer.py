@@ -5,7 +5,7 @@ from dash.dependencies import Input, Output, State
 import plotly.graph_objects as go
 import nibabel as nib
 import numpy as np
-from functions import rw as sio
+from app.functions import rw as sio
 import plotly.colors as pc
 import argparse
 

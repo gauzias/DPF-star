@@ -1,9 +1,9 @@
 import os
 import argparse
-from functions import rw 
-from functions import texture as stex
-from functions import dpfstar
-import config as cfg  # Import du chemin depuis config.py
+from app.functions import rw 
+from app.functions import texture as stex
+from app.functions import dpfstar
+import app.config as cfg  # Import du chemin depuis config.py
 
 def save_dpfstar(dpfstar, name_subject):
     # Création du dossier wd/named_subject

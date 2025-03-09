@@ -4,7 +4,7 @@ import argparse
 from app.functions import rw as sio
 from app.functions import texture as stex
 from app.functions import curvature as scurv 
-import config as cfg  # Import du chemin depuis config.py
+import app.config as cfg  # Import du chemin depuis config.py
 
 def save_curvature(K1, K2, Kmean, name_subject):
     # Création du dossier Parcelizer/named_subject
