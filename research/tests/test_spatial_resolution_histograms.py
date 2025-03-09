@@ -2,6 +2,8 @@
 from research.tools import rw
 from research.tools import dpfstar
 from research.tools import dynamic_histogramm as viz
+from research.tools import compare_histograms as st
+import numpy as np
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -46,5 +48,20 @@ dstar_05 = rw.read_gii_file(path_dstar_05)
 dstar_02 = rw.read_gii_file(path_dstar_02)
 
 
-
 viz.plot_histograms(dstar_1, dstar_05, dstar_02)
+
+
+# Test statistiques
+hist_1, _ = np.histogram(dstar_1, bins=23, density=False)
+hist_05, _ = np.histogram(dstar_05, bins=23, density=False)
+hist_02, _ = np.histogram(dstar_02, bins=23, density=False)
+histograms =  [hist_1, hist_05, hist_02]
+
+result_table = st.compare_histograms(histograms)
+
+# Affichage des résultats
+import ace_tools_open as atools
+atools.display_dataframe_to_user(name="Résultats Comparaison Histogrammes", dataframe=result_table)
+
+# Interprétation et conclusion
+st.interpret_results(result_table)
