@@ -188,3 +188,87 @@ simply copy paste the url http://XXX.X.X.X:XXXX/ is your internet browser
 
 The informations relative to the datasets are stored in the folder ./data/dataset_EXP1.csv
 <img src="./images/screen_dataset_EXP1.png" alt="data EXP1" width="500"/>
+
+### Évaluation de la Robustesse de la Méthode DPF-star à la Résolution du Maillage
+
+## 1. Génération de Maillages de Différentes Résolutions
+
+Pour évaluer la robustesse de notre méthode en fonction de la résolution du maillage, nous avons généré un ensemble de maillages échantillonnés à différents niveaux de résolution. Nous avons défini trois niveaux de résolution en fonction de l'aire moyenne de Voronoï du maillage :
+
+- **Haute résolution** : Aire de Voronoï = (...)
+- **Résolution moyenne** : Aire de Voronoï = (...)
+- **Basse résolution** : Aire de Voronoï = (...)
+
+Les maillages ont été décimés à l'aide du logiciel **MeshLab** et du filtre *Quadric Based Edge Collapse*, basé sur la méthode de **Garland et al., 1997**. Ce filtrage réduit le nombre de sommets tout en préservant autant que possible la géométrie originale du maillage. Le code est disponible sur notre **repository GitHub**.
+
+**Figure 1 : Maillages à Différentes Résolutions**
+
+*Légende : Maillages décimés avec MeshLab.*
+
+---
+
+## 2. Comparaison des Distributions de Profondeur entre Différentes Résolutions
+
+Nous avons calculé la **DPF-star** pour chaque version du maillage, puis comparé les distributions de profondeur à l'aide de plusieurs tests statistiques. **La figure 2** présente la visualisation de la profondeur pour chaque maillage et **la figure 3** montre les histogrammes correspondants.
+
+### **Observation des Différences Visuelles**
+
+- Les valeurs de profondeur sont **globalement équivalentes** entre les résolutions.
+- Les **isolignes apparaissent plus fines** sur le maillage haute résolution, ce qui est attendu puisque la topologie est plus précise.
+- Plus le maillage est décimé, moins il capture les variations fines de courbure.
+
+### **Comparaison Quantitative**
+
+Nous avons réalisé plusieurs tests statistiques pour comparer les distributions de profondeur entre les différents niveaux de résolution.
+
+| Comparaison  | Test du **Chi2** (p-value) | Test de **Kolmogorov-Smirnov** (p-value) | **Bhattacharyya** | **Divergence KL** |
+|-------------|----------------|----------------------|---------------|----------------|
+| Mesh 1 vs Mesh 0.5  | 0.0259 (p=1) | 0.2174 (p=0.6601) | -7.4031 | 1642.9 |
+| Mesh 1 vs Mesh 0.2  | 0.1475 (p=1) | 0.3913 (p=0.083)  | -6.9313 | 3904.8 |
+| Mesh 0.5 vs Mesh 0.2 | 0.1414 (p=1) | 0.2609 (p=0.4218) | -6.5882 | 1136.18 |
+
+**Interprétation** : Les distributions ne présentent **pas de différences significatives** (p > 0.05 dans les tests KS et Chi2). La divergence KL montre une différence numérique entre les distributions, mais cela ne signifie pas qu'elles sont statistiquement distinctes.
+
+**Figure 2 : Visualisation de la DPF-star selon la Résolution du Maillage**
+
+*Ligne 1 : Maillages à différentes résolutions. Ligne 2 : DPF-star. Colonnes : Résolution 1, 0.5, 0.2.*
+
+**Figure 3 : Histogrammes des Distributions de Profondeur**
+
+---
+
+## 3. Projection des Profondeurs sur un Maillage Sous-échantillonné
+
+Pour analyser plus finement la robustesse de notre méthode, nous avons projeté la profondeur calculée à partir du **maillage haute résolution** sur les maillages de **plus basse résolution**. Ensuite, nous avons comparé ces projections avec les valeurs de profondeur directement calculées à partir du maillage basse résolution.
+
+**Observation** :
+- Les variations de profondeur projetées correspondent bien aux **variations topologiques** du maillage.
+- Cela confirme que la projection barycentrique capture fidèlement la structure originale du maillage.
+
+**Figure 4 : Projection des Profondeurs sur un Maillage Basse Résolution**
+
+### **Quantification des Erreurs**
+Nous avons calculé les **erreurs quadratiques moyennes (MSE), normalisées (NRMSE) et absolues (MAE)** entre les profondeurs projetées et celles du maillage basse résolution.
+
+| Comparaison | **MSE** | **NRMSE** | **MAE** |
+|-------------|--------|--------|--------|
+| D(0.5) vs D(1)proj(0.5) | 0.039 | 0.033 | 0.131 |
+
+**Interprétation** : L'erreur quadratique moyenne et l'erreur normalisée sont faibles, indiquant une bonne **conservation des structures morphologiques** lors de la projection.
+
+---
+
+## 4. Conclusion
+
+Nos résultats montrent que la méthode **DPF-star** est **robuste à la résolution du maillage** :
+- Les valeurs de profondeur restent **cohérentes** à travers les différentes résolutions.
+- L'analyse statistique ne montre **aucune différence significative** entre les distributions de profondeur.
+- La projection des profondeurs haute résolution sur un maillage sous-échantillonné **reste fiable et préserve les variations locales**.
+
+Ces résultats suggèrent que DPF-star peut être appliqué à des **maillages de résolutions variées** sans perte majeure d'information, ce qui la rend adaptée à des analyses multi-résolutions en imagerie médicale.
+
+---
+
+## 5. Références
+- **M. Garland & P. Heckbert.** *Surface Simplification Using Quadric Error Metrics.* In Proceedings of SIGGRAPH 97.
+
