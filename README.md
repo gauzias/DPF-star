@@ -202,7 +202,7 @@ Pour évaluer la robustesse de notre méthode en fonction de la résolution du m
 Les maillages ont été décimés à l'aide du logiciel **MeshLab** et du filtre *Quadric Based Edge Collapse*, basé sur la méthode de **Garland et al., 1997**. Ce filtrage réduit le nombre de sommets tout en préservant autant que possible la géométrie originale du maillage. Le code est disponible sur notre **repository GitHub**.
 
 **Figure 1 : Maillages à Différentes Résolutions**
-
+<img src="./images/figure_r1.PNG" alt="dpfstar display" width="500"/>
 *Légende : Maillages décimés avec MeshLab.*
 
 ---
@@ -211,6 +211,13 @@ Les maillages ont été décimés à l'aide du logiciel **MeshLab** et du filtre
 
 Nous avons calculé la **DPF-star** pour chaque version du maillage, puis comparé les distributions de profondeur à l'aide de plusieurs tests statistiques. **La figure 2** présente la visualisation de la profondeur pour chaque maillage et **la figure 3** montre les histogrammes correspondants.
 
+**Figure 2 : Visualisation de la DPF-star selon la Résolution du Maillage**
+<img src="./images/figure_r2.PNG" alt="dpfstar display" width="500"/>
+*Ligne 1 : Maillages à différentes résolutions. Ligne 2 : DPF-star. Colonnes : Résolution 1, 0.5, 0.2.*
+
+
+**Figure 3 : Histogrammes des Distributions de Profondeur**
+<img src="./images/figure_r3.PNG" alt="dpfstar display" width="500"/>
 ### **Observation des Différences Visuelles**
 
 - Les valeurs de profondeur sont **globalement équivalentes** entre les résolutions.
@@ -229,12 +236,6 @@ Nous avons réalisé plusieurs tests statistiques pour comparer les distribution
 
 **Interprétation** : Les distributions ne présentent **pas de différences significatives** (p > 0.05 dans les tests KS et Chi2). La divergence KL montre une différence numérique entre les distributions, mais cela ne signifie pas qu'elles sont statistiquement distinctes.
 
-**Figure 2 : Visualisation de la DPF-star selon la Résolution du Maillage**
-
-*Ligne 1 : Maillages à différentes résolutions. Ligne 2 : DPF-star. Colonnes : Résolution 1, 0.5, 0.2.*
-
-**Figure 3 : Histogrammes des Distributions de Profondeur**
-
 ---
 
 ## 3. Projection des Profondeurs sur un Maillage Sous-échantillonné
@@ -246,6 +247,7 @@ Pour analyser plus finement la robustesse de notre méthode, nous avons projeté
 - Cela confirme que la projection barycentrique capture fidèlement la structure originale du maillage.
 
 **Figure 4 : Projection des Profondeurs sur un Maillage Basse Résolution**
+<img src="./images/figure_r4.PNG" alt="dpfstar display" width="500"/>
 
 ### **Quantification des Erreurs**
 Nous avons calculé les **erreurs quadratiques moyennes (MSE), normalisées (NRMSE) et absolues (MAE)** entre les profondeurs projetées et celles du maillage basse résolution.
