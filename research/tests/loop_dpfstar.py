@@ -4,8 +4,9 @@ from research.tools.data_manager import list_files as dm
 from app import compute_dpfstar
 
 
+
 # path manager and variables
-resolutions_list = [100,75,50,25]
+resolutions_list = [10]
 data_folder  = "D:/Callisto/data/data_repo_dpfstar/data_test_resolution"
 gii_extension = ".gii"
 

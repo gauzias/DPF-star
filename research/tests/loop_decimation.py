@@ -7,7 +7,7 @@ from research.tools.mesh_processing import filter_decimation as fd
 from research.tools.mesh_processing import snapshot_meshlab as snap
 
 # path manager and variables
-resolutions_list = [75,50,25]
+resolutions_list = [10]
 data_folder  = "D:/Callisto/data/data_repo_dpfstar/data_test_resolution"
 gii_extension = ".gii"
 ply_extension = ".ply"
