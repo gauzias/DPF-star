@@ -16,6 +16,7 @@ def load_gii_scalars(gii_file):
     """Charge les valeurs scalaires depuis un fichier GIFTI (.gii)"""
     gii_data = nib.load(gii_file)
     scalars = gii_data.darrays[0].data  # Première liste de scalaires
+    print(scalars)
     return scalars
 
 def apply_colormap_to_mesh(mesh, scalars, colormap="coolwarm"):
@@ -24,14 +25,12 @@ def apply_colormap_to_mesh(mesh, scalars, colormap="coolwarm"):
     
     # Normalisation centrée sur 0
     min_val, max_val = np.min(scalars), np.max(scalars)
-    abs_min = min(abs(min_val), abs(max_val))  # Prend la valeur min absolue pour centrer
-    coef = 0.8
-    clip_scalars = np.clip(scalars, -coef*abs_min, coef*abs_min)
-    normalized_scalars = (clip_scalars + coef*abs_min)  / (2*coef*abs_min)  # Mise à l'échelle entre 0 et 1
+
+    #normalized_scalars = (clip_scalars + abs_min)  / (2*coef*abs_min)  # Mise à l'échelle entre 0 et 1
     
     # Appliquer la colormap de Matplotlib
     cmap = plt.get_cmap(colormap)
-    colors = cmap(normalized_scalars)[:, :3]  # Exclure l'alpha channel
+    colors = cmap(scalars)[:, :3]  # Exclure l'alpha channel
     #colors = cmap(scalars)[:, :3]  # Exclure l'alpha channel
 
     
@@ -39,7 +38,7 @@ def apply_colormap_to_mesh(mesh, scalars, colormap="coolwarm"):
     mesh.vertex_colors = o3d.utility.Vector3dVector(colors)
     
     #return cmap, min_val, max_val
-    return cmap, -abs_min, abs_min
+    return cmap, min_val, max_val
 
 def process_ply_with_texture(ply_file, gii_file, output_image, colormap="coolwarm"):
     """Charge le maillage, applique la texture et affiche le rendu avec Open3D"""
@@ -134,7 +133,7 @@ def process_ply_with_texture(ply_file, gii_file, output_image, colormap="coolwar
 
 
 # path manager and variables
-resolutions_list = [10]
+resolutions_list = [100]
 data_folder  = "D:/Callisto/data/data_repo_dpfstar/data_test_resolution"
 gii_extension = ".gii"
 ply_extension = ".ply"
@@ -160,7 +159,8 @@ for mesh_path in files :
         if not os.path.exists(os.path.join(subject_folder, "snapshot")):
             os.makedirs(os.path.join(subject_folder, "snapshot"))
 
-        output_image = os.path.join(subject_folder, "snapshot", name_mesh_decimate + "_dpfstar.png")
+        #output_image = os.path.join(subject_folder, "snapshot", name_mesh_decimate + "_.png")
+        output_image = os.path.join(subject_folder, "snapshot", "test.png")
         ply_file = os.path.join(subject_folder, f"{name_mesh_decimate}{ply_extension}")
-        gii_file = os.path.join("D:\Callisto\wd_dpfstar", name_mesh_decimate , "dpfstar.gii")
+        gii_file = os.path.join(subject_folder,  "sub-CC00063AN06_ses-15102_hemi-right_desc-drawem_dseg.label.gii")
         process_ply_with_texture(ply_file, gii_file, output_image, colormap="jet") #coolwarm

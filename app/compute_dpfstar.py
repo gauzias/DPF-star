@@ -8,6 +8,7 @@ import app.config as cfg  # Import du chemin depuis config.py
 def save_dpfstar(dpfstar, name_subject):
     # Création du dossier wd/named_subject
     save_folder = os.path.join(cfg.WD_FOLDER, name_subject)
+
     if not os.path.exists(save_folder):
         os.makedirs(save_folder)
 

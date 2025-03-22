@@ -17,7 +17,7 @@ try:
 except ValueError as e:
     print(e)
 
-### Loop decimation
+### Loop dcompute dpfstar
 
 for mesh_path in files :
     print(mesh_path)

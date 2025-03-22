@@ -1,8 +1,8 @@
 
 from research.tools import rw
 from research.tools import dpfstar
-from research.tools import dynamic_histogramm as viz
-from research.tools import compare_histograms as st
+from research.tools.histogramm_analysis import dynamic_histogramm as viz
+from research.tools.histogramm_analysis import compare_histograms as st
 import numpy as np
 import sys
 import os
