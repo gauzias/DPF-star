@@ -98,29 +98,29 @@ def compute_mesh_weights(
             z_weights = sss.zscore(W.data)
             inds_out = np.where(np.abs(z_weights) > z_threshold)[0]
             W.data[inds_out] = np.mean(W.data)
-            print(
-                "    -Zscore threshold needed for ",
-                len(inds_out),
-                " values = ",
-                100 * len(inds_out) / nnz,
-                " %",
-            )
+            #print(
+            #    "    -Zscore threshold needed for ",
+            #    len(inds_out),
+            #    " values = ",
+            #    100 * len(inds_out) / nnz,
+            #    " %",
+            #)
 
-        print(
-            "    -edge length threshold needed for ",
-            threshold_needed,
-            " values = ",
-            100 * threshold_needed / nnz,
-            " %",
-        )
-        if cot_threshold is not None:
-            print(
-                "    -cot threshold needed for ",
-                threshold_needed_angle,
-                " values = ",
-                100 * threshold_needed_angle / nnz,
-                " %",
-            )
+        #print(
+        #    "    -edge length threshold needed for ",
+        #    threshold_needed,
+        #    " values = ",
+        #    100 * threshold_needed / nnz,
+        #    " %",
+        #)
+        #if cot_threshold is not None:
+            #print(
+            #    "    -cot threshold needed for ",
+            #    threshold_needed_angle,
+            #    " values = ",
+            #    100 * threshold_needed_angle / nnz,
+            #    " %",
+            #)
 
     if weight_type == "meanvalue":
         for i in range(3):
@@ -179,21 +179,21 @@ def compute_mesh_weights(
     li = np.hstack(W.data)
     nb_Nan = len(np.where(np.isnan(li))[0])
     nb_neg = len(np.where(li < 0)[0])
-    print(
-        "    -number of Nan in weights: ",
-        nb_Nan,
-        " = ",
-        100 *
-        nb_Nan /
-        nnz,
-        " %")
-    print(
-        "    -number of Negative values in weights: ",
-        nb_neg,
-        " = ",
-        100 * nb_neg / nnz,
-        " %",
-    )
+    #print(
+    #    "    -number of Nan in weights: ",
+    #    nb_Nan,
+    #    " = ",
+    #    100 *
+    #    nb_Nan /
+    #    nnz,
+    #    " %")
+    #print(
+    #    "    -number of Negative values in weights: ",
+    #    nb_neg,
+    #    " = ",
+    #    100 * nb_neg / nnz,
+    #    " %",
+    #)
 
     return W.tocsr(), femB.tocsr()
 
@@ -210,7 +210,7 @@ def compute_mesh_laplacian(
     :param lap_type:
     :return: arrays L and B
     """
-    print("  Computing Laplacian")
+    #print("  Computing Laplacian")
     if weights is None:
         (weights, fem_b) = compute_mesh_weights(mesh, weight_type=lap_type)
 
@@ -226,7 +226,7 @@ def compute_mesh_laplacian(
     L = sparse.lil_matrix(dia - weights)
 
     li = np.hstack(L.data)
-    print("    -nb Nan in Laplacian : ", len(np.where(np.isnan(li))[0]))
-    print("    -nb Inf in Laplacian : ", len(np.where(np.isinf(li))[0]))
+    #print("    -nb Nan in Laplacian : ", len(np.where(np.isnan(li))[0]))
+    #print("    -nb Inf in Laplacian : ", len(np.where(np.isinf(li))[0]))
 
     return L, B
