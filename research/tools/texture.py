@@ -1,10 +1,3 @@
-"""
-github.com/gauzias/slam
-----------------------------
-
-definition of the Texture class
-"""
-
 import numpy as np
 from scipy import stats as sps
 
