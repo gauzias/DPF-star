@@ -94,7 +94,7 @@ def plot_all_rois(df, hemi, metric, title, output_path, label_names, value_color
     )
 
     fig.write_html(output_path)
-    print(f"📊 Figure interactive sauvegardée : {output_path}")
+    print(f"Figure interactive sauvegardée : {output_path}")
 
 # === Main ===
 def main():
@@ -107,7 +107,7 @@ def main():
     os.makedirs(output_dir, exist_ok=True)
 
     df = load_combined_data(dpf_folder, sulc_folder)
-    print("✅ Données fusionnées :", df.shape)
+    print("Données fusionnées :", df.shape)
 
     # DPFstarAbs Gauche
     plot_all_rois(
