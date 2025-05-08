@@ -26,7 +26,7 @@ dataset = datasetEXP1['dataset'].values
 
 # param
 alphas = [0, 1, 5, 10, 50, 100, 150, 200, 250, 300, 400, 500, 600, 700, 800, 900, 1000, 2000]
-alphas = [5000, 10000]
+
 
 # init
 list_std_crest_curv = list()
@@ -62,7 +62,7 @@ for idx, sub in enumerate(subjects):
     dpf003 = sio.load_texture(dpf003_path).darray[0]
 
     # import dpfstar
-    dpfstar_path = os.path.join(wd, 'data_EXP1/result_EXP1/depth', sub + '_' + ses, 'dpfstar_surface', sub + '_' + ses + '_dpfstar_2.gii')
+    dpfstar_path = os.path.join(wd, 'data_EXP1/result_EXP1/depth', sub + '_' + ses, 'dpfstar', sub + '_' + ses + '_dpfstar.gii')
     dpfstars = sio.load_texture(dpfstar_path).darray
 
     # import lines
@@ -120,6 +120,6 @@ df_dpfstar = pd.DataFrame(dict(subject = np.repeat(subjects, len(alphas)),
                                sessions = np.repeat(sessions, len(alphas)),
                                alphas = np.repeat([alphas], len(subjects), axis=0).ravel(),
                                std_crest_dpfstar = list_std_crest_dpfstar))
-df_dpfstar.to_csv(os.path.join(wd, 'data_EXP1/result_EXP1/metrics/dpfstar_surface/dpfstar_std_crest_2.csv' ), index=False)
+df_dpfstar.to_csv(os.path.join(wd, 'data_EXP1/result_EXP1/metrics/dpfstar/dpfstar_std_crest.csv' ), index=False)
 
 

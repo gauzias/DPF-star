@@ -1,12 +1,11 @@
-import slam.io as sio
+from  research.tools import rw as sio
 import os
 import pandas as pd
-import slam.texture as stex
 import tools.depth as depth
 import numpy as np
 
 """
-date : 10/08/2023
+date : 10/08/2023, mise a jour 06/05/2023
 author : maxime.dieudonne@univ-amu.fr
 
 this script compute diff median between fundi and crest
@@ -28,7 +27,8 @@ dataset = datasetEXP1['dataset'].values
 
 # param
 alphas = [0, 1, 5, 10, 50, 100, 150, 200, 250, 300, 400, 500, 600, 700, 800, 900, 1000, 2000]
-alphas = [5000, 10000]
+
+
 # init
 list_curv = list()
 list_sulc = list()
@@ -63,7 +63,7 @@ for idx, sub in enumerate(subjects):
     dpf003 = sio.load_texture(dpf003_path).darray[0]
 
     # import dpfstar
-    dpfstar_path = os.path.join(wd, 'data_EXP1/result_EXP1/depth', sub + '_' + ses, 'dpfstar_surface', sub + '_' + ses + '_dpfstar_2.gii')
+    dpfstar_path = os.path.join(wd, 'data_EXP1/result_EXP1/depth', sub + '_' + ses, 'dpfstar', sub + '_' + ses + '_dpfstar.gii')
     dpfstars = sio.load_texture(dpfstar_path).darray
 
     # import lines
@@ -125,5 +125,5 @@ df_dpfstar = pd.DataFrame(dict(subject = np.repeat(subjects, len(alphas)),
                                sessions = np.repeat(sessions, len(alphas)),
                                alphas = np.repeat([alphas], len(subjects),axis=0).ravel(),
                                diff_fundicrest_dpfstar = list_dpfstar))
-df_dpfstar.to_csv(os.path.join(wd, 'data_EXP1/result_EXP1/metrics/dpfstar_surface/dpfstar_diff_fundicrest_2.csv' ), index=False)
+df_dpfstar.to_csv(os.path.join(wd, 'data_EXP1/result_EXP1/metrics/dpfstar/dpfstar_diff_fundicrest.csv' ), index=False)
 
