@@ -61,15 +61,3 @@ df_dev.to_csv(wd / 'data_EXP1' / 'result_EXP1' / 'metrics' / 'stats_wilcoxon' / 
 df_std.to_csv(wd / 'data_EXP1' / 'result_EXP1' / 'metrics' / 'stats_wilcoxon' / 'stats_std.csv', index=False)
 df_diff.to_csv(wd / 'data_EXP1' / 'result_EXP1' / 'metrics' / 'stats_wilcoxon' / 'stats_diff.csv', index=False)
 
-# Wilcoxon tests
-#def perform_wilcoxon(df):
-#    return pg.wilcoxon(df.drop(columns=['subject', 'sessions']), alternative='two-sided')
-
-#stat_diff = perform_wilcoxon(df_diff)
-#stat_dev = perform_wilcoxon(df_dev)
-#stat_std = perform_wilcoxon(df_std)
-
-# Save stats
-#(stat_diff.to_csv(wd / 'data_EXP1' / 'result_EXP1' / 'metrics' / 'stats_wilcoxon' / 'stats_diff_2.csv'))
-#(stat_dev.to_csv(wd / 'data_EXP1' / 'result_EXP1' / 'metrics' / 'stats_wilcoxon' / 'stats_dev_2.csv'))
-#(stat_std.to_csv(wd / 'data_EXP1' / 'result_EXP1' / 'metrics' / 'stats_wilcoxon' / 'stats_std_2.csv'))

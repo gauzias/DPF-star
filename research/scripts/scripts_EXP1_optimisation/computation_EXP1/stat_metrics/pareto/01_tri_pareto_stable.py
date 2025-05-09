@@ -70,3 +70,4 @@ pareto_df = pareto_df.sort_values(by="stability_score")
 # Affichage
 print("Solutions Pareto stables (triées par stabilité croissante):")
 print(pareto_df[["alpha", "dev", "std", "diff", "stability_score"]])
+
