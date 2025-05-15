@@ -63,17 +63,17 @@ def map_low_to_high(mesh_high, mesh_low, depth_high):
     """
     mapped_depth = np.zeros(len(mesh_low.vertices))
     nearest_faces = find_nearest_face(mesh_high, mesh_low.vertices)
-    print(nearest_faces)
+    #print(nearest_faces)
     
     for i, face in enumerate(nearest_faces):
-        print("loop:", i)
-        print("nearest face", face)
+        #print("loop:", i)
+        #print("nearest face", face)
         if face is not None:
             v0, v1, v2 = mesh_high.vertices[face]
-            print("v0, v1, v2", v0, v1, v2)
+            #print("v0, v1, v2", v0, v1, v2)
             f_values = depth_high[np.array(face)]
 
-            print("f_values:", f_values)
+            #print("f_values:", f_values)
             mapped_depth[i] = barycentric_interpolation(v0, v1, v2, mesh_low.vertices[i], f_values)
         else:
             mapped_depth[i] = np.nan  # Valeur manquante
