@@ -28,7 +28,7 @@ for mesh_path in files:
     mesh_res100_name = mesh_name + "_res100"
 
     # Convert to MeshLab format
-    subject_folder = os.path.join(data_folder, mesh_name)
+    subject_folder = os.path.join(data_folder, "sampled_meshes", mesh_name)
     os.makedirs(subject_folder, exist_ok=True)
     path_mesh_ply = os.path.join(subject_folder, f"{mesh_res100_name}{ply_extension}")
     path_mesh_gii = os.path.join(subject_folder, f"{mesh_res100_name}{gii_extension}")
